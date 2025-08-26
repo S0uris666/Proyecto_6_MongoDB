@@ -1,0 +1,1 @@
+const bcrypt = require('bcryptjs'); //para encriptar contraseñas
