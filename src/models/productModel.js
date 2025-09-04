@@ -20,7 +20,7 @@ const productSchema = new mongoose.Schema({
   category: {
     type: String,
     required: [true, 'La categoría es requerida'],
-    enum: ['Juego de mesa', 'Reserva', 'Cuentos', 'hogar', 'deporte', 'otro'],
+    enum: ['Juego de mesa', 'Reserva', 'Cuentos', 'otro'],
     default: 'other'
   },
   stock: {
