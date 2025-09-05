@@ -7,16 +7,20 @@ const { requestRole, updateRolUser, getRoleRequests, handleRoleRequest  } = requ
 const authRol = require('../middlewares/authRol');
 
 
-userRouter.post('/register', createUser);
-userRouter.post('/login',loginUser)
-userRouter.put('/update',auth, updateUser)
-userRouter.get('/verify-user',auth, verifyUser);
-userRouter.post("/request-role", auth, requestRole); // Nueva ruta para solicitar cambio de rol
+userRouter.post('/register', createUser);//http://localhost:3000/api/v1/users/register
+userRouter.post('/login',loginUser)//http://localhost:3000/api/v1/users/login
+userRouter.put('/update',auth, updateUser)//http://localhost:3000/api/v1/users/update
+userRouter.get('/verify-user',auth, verifyUser);//http://localhost:3000/api/v1/users/verify-user
+// Nueva ruta para solicitar cambio de rol
+userRouter.post("/request-role", auth, requestRole); //http://localhost:3000/api/v1/users/request-role
 
 //admin
-userRouter.put('/update',auth, authRol("admin"), updateRolUser) // Ruta protegida, solo accesible para usuarios autenticados y con rol admin, cambia el rol de los users
-userRouter.get("/role-requests-admin", auth, autorizeRoles("admin"), getRoleRequests); // Ruta para que el admin vea las solicitudes de rol
-userRouter.put("/role-requests-admin/:id", auth, autorizeRoles("admin"), handleRoleRequest); // Ruta para que el admin apruebe o rechace una solicitud de rol
+//  cambia el rol de los users
+/* userRouter.put('/update',auth, authRol("admin"), updateRolUser) //http://localhost:3000/api/v1/users/update */
+// Ruta para que el admin vea las solicitudes de rol
+userRouter.get("/role-requests-admin", auth, authRol("admin"), getRoleRequests); // http://localhost:3000/api/v1/users/role-requests-admin
+// Ruta para que el admin apruebe o rechace una solicitud de rol
+userRouter.put("/role-requests-admin/:id", auth, authRol("admin"), handleRoleRequest); // http://localhost:3000/api/v1/users/role-requests-admin/:id
 
 
 
