@@ -13,6 +13,10 @@ connectDB();
 app.use(cors());
 app.use(express.json());
 
+
+app.use('/', (req, res) => {
+    res.json({ message: "API is running" });
+})
 app.use('/api/v1/users', userRouter);
 app.use('/api/v1/products', productRouter);
 
