@@ -15,4 +15,4 @@ eventRouter.post("/", auth, authRol("superuser", "admin"), createEvent);
 eventRouter.put("/:id", auth, authRol("superuser", "admin"), updateEvent);
 eventRouter.delete("/:id", auth, authRol("superuser", "admin"), deleteEvent);
 
-module.exports = router;
+module.exports = eventRouter;
