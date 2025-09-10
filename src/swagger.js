@@ -6,7 +6,7 @@ const options = {
   definition: {
     openapi: "3.0.0",
     info: {
-      title: "API Proyecto Abogados",
+      title: "API Proyecto 6 Bootcamp - Documentación",
       version: "1.0.0",
       description: "Documentación de la API desplegada en Render",
     },
