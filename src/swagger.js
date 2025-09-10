@@ -15,7 +15,7 @@ const options = {
         url: "https://proyecto-6-mongodb-erpe.onrender.com/api/v1", // Render
       },
       {
-        url: "http://localhost:5000/api/v1", // Local
+        url: "http://localhost:3000/api/v1", // Local
       },
     ],
     components: {
