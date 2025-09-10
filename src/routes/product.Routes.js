@@ -35,8 +35,11 @@ module.exports = productRouter;
  *           type: number
  *         category:
  *           type: string
+ *           enum: ['Juego de mesa', 'Reserva', 'Cuentos', 'otro']
  *         stock:
  *           type: number
+ *         isActive:
+ *           type: boolean
  */
 
 /**
@@ -53,6 +56,16 @@ module.exports = productRouter;
  *   get:
  *     summary: Obtener un producto por ID
  *     tags: [Productos]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: ID del producto
+ *     responses:
+ *       200:
+ *         description: Producto encontrado
  *
  * /products/create:
  *   post:
@@ -60,6 +73,15 @@ module.exports = productRouter;
  *     tags: [Productos]
  *     security:
  *       - bearerAuth: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/Product'
+ *     responses:
+ *       201:
+ *         description: Producto creado
  *
  * /products/update/{id}:
  *   put:
@@ -67,6 +89,22 @@ module.exports = productRouter;
  *     tags: [Productos]
  *     security:
  *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: ID del producto
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/Product'
+ *     responses:
+ *       200:
+ *         description: Producto actualizado
  *
  * /products/delete/{id}:
  *   delete:
@@ -74,4 +112,14 @@ module.exports = productRouter;
  *     tags: [Productos]
  *     security:
  *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: ID del producto
+ *     responses:
+ *       200:
+ *         description: Producto eliminado
  */

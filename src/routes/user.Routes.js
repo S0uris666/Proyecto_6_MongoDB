@@ -47,16 +47,42 @@ module.exports = userRouter;
  *         role:
  *           type: string
  *           enum: [user, superuser, admin]
- *
+ */
+
+/**
+ * @swagger
  * /users/register:
  *   post:
  *     summary: Registrar un usuario
  *     tags: [Usuarios]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/User'
+ *     responses:
+ *       201:
+ *         description: Usuario creado
  *
  * /users/login:
  *   post:
  *     summary: Login de usuario
  *     tags: [Usuarios]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               email:
+ *                 type: string
+ *               password:
+ *                 type: string
+ *     responses:
+ *       200:
+ *         description: Login exitoso, retorna token
  *
  * /users/update:
  *   put:
@@ -64,6 +90,15 @@ module.exports = userRouter;
  *     tags: [Usuarios]
  *     security:
  *       - bearerAuth: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/User'
+ *     responses:
+ *       200:
+ *         description: Usuario actualizado
  *
  * /users/verify-user:
  *   get:
@@ -71,6 +106,9 @@ module.exports = userRouter;
  *     tags: [Usuarios]
  *     security:
  *       - bearerAuth: []
+ *     responses:
+ *       200:
+ *         description: Usuario autenticado
  *
  * /users/request-role:
  *   post:
@@ -78,6 +116,18 @@ module.exports = userRouter;
  *     tags: [Roles]
  *     security:
  *       - bearerAuth: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               motivation:
+ *                 type: string
+ *     responses:
+ *       201:
+ *         description: Solicitud enviada al admin
  *
  * /users/role-requests-admin:
  *   get:
@@ -85,6 +135,9 @@ module.exports = userRouter;
  *     tags: [Roles]
  *     security:
  *       - bearerAuth: []
+ *     responses:
+ *       200:
+ *         description: Lista de solicitudes pendientes
  *
  * /users/role-requests-admin/{id}:
  *   put:
@@ -92,4 +145,24 @@ module.exports = userRouter;
  *     tags: [Roles]
  *     security:
  *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: ID de la solicitud de rol
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               decision:
+ *                 type: string
+ *                 enum: [approved, rejected]
+ *     responses:
+ *       200:
+ *         description: Solicitud procesada
  */
