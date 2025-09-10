@@ -14,7 +14,7 @@ exports.createUser = async (req, res) => {
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
 
-    const newCart= await Cart.create({});
+    /* const newCart= await Cart.create({}); */
 
     //create user
     const newUser = await User.create({
@@ -22,7 +22,7 @@ exports.createUser = async (req, res) => {
       email,
       role,
       password: hashedPassword,
-      cart: newCart
+      /* cart: newCart */
     });
     
     if (!newUser) {
