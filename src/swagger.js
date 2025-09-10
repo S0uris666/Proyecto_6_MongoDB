@@ -28,7 +28,7 @@ const options = {
       },
     },
   },
-  apis: ["./routes/*.js"], // Aquí Swagger buscará la documentación de tus rutas
+  apis: ["./src/routes/*.js"], // Aquí Swagger buscará la documentación de tus rutas
 };
 
 const specs = swaggerJsdoc(options);
