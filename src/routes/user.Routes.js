@@ -44,6 +44,9 @@ module.exports = userRouter;
  *           type: string
  *         email:
  *           type: string
+ *         password:
+ *           type: string
+ *           format: password
  *         role:
  *           type: string
  *           enum: [user, superuser, admin]
@@ -75,11 +78,15 @@ module.exports = userRouter;
  *         application/json:
  *           schema:
  *             type: object
+ *             required:
+ *               - email
+ *               - password
  *             properties:
  *               email:
  *                 type: string
  *               password:
  *                 type: string
+ *                 format: password
  *     responses:
  *       200:
  *         description: Login exitoso, retorna token
@@ -122,6 +129,8 @@ module.exports = userRouter;
  *         application/json:
  *           schema:
  *             type: object
+ *             required:
+ *               - motivation
  *             properties:
  *               motivation:
  *                 type: string
@@ -158,6 +167,8 @@ module.exports = userRouter;
  *         application/json:
  *           schema:
  *             type: object
+ *             required:
+ *               - decision
  *             properties:
  *               decision:
  *                 type: string
