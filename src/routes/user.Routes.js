@@ -24,4 +24,72 @@ userRouter.put("/role-requests-admin/:id", auth, authRol("admin"), handleRoleReq
 
 
 //superuser
-module.exports = userRouter
+module.exports = userRouter;
+
+
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *     User:
+ *       type: object
+ *       required:
+ *         - username
+ *         - email
+ *         - password
+ *       properties:
+ *         id:
+ *           type: string
+ *         username:
+ *           type: string
+ *         email:
+ *           type: string
+ *         role:
+ *           type: string
+ *           enum: [user, superuser, admin]
+ *
+ * /users/register:
+ *   post:
+ *     summary: Registrar un usuario
+ *     tags: [Usuarios]
+ *
+ * /users/login:
+ *   post:
+ *     summary: Login de usuario
+ *     tags: [Usuarios]
+ *
+ * /users/update:
+ *   put:
+ *     summary: Actualizar usuario
+ *     tags: [Usuarios]
+ *     security:
+ *       - bearerAuth: []
+ *
+ * /users/verify-user:
+ *   get:
+ *     summary: Verificar usuario autenticado
+ *     tags: [Usuarios]
+ *     security:
+ *       - bearerAuth: []
+ *
+ * /users/request-role:
+ *   post:
+ *     summary: Solicitar rol superuser
+ *     tags: [Roles]
+ *     security:
+ *       - bearerAuth: []
+ *
+ * /users/role-requests-admin:
+ *   get:
+ *     summary: Ver solicitudes de roles (admin)
+ *     tags: [Roles]
+ *     security:
+ *       - bearerAuth: []
+ *
+ * /users/role-requests-admin/{id}:
+ *   put:
+ *     summary: Aprobar o rechazar solicitud de rol
+ *     tags: [Roles]
+ *     security:
+ *       - bearerAuth: []
+ */

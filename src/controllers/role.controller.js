@@ -36,7 +36,7 @@ exports.requestRole = async (req, res) => {
     // Validar si ya tiene solicitud pendiente
     const existing = await RoleRequest.findOne({ user: req.user.id, status: "pending" });
     if (existing) {
-      return res.status(400).json({ message: "Ya tienes una solicitud pendiente" });
+      return res.status(400).json({ message: "Ya tienes una solicitud pendiente, por favor espera a que el adminstrador la revise" });
     }
 
     // Crear nueva solicitud
@@ -48,7 +48,7 @@ exports.requestRole = async (req, res) => {
 
     await newRequest.save();
 
-    res.status(201).json({ message: "Solicitud enviada al admin", request: newRequest });
+    res.status(201).json({ message: "Solicitud enviada al administrador", request: newRequest });
 
   } catch (error) {
     console.error(error);
