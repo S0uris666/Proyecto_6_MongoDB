@@ -3,7 +3,7 @@ const Event = require("../models/EventModel");
 // Crear un nuevo evento
 
 exports.createEvent = async (req, res) => {
-  try {
+  try {// falta validar que el evento no existe
     const newEvent = await Event.create({
       ...req.body,
       createdBy: req.user._id
@@ -73,7 +73,8 @@ exports.getAllEvents = async (req, res) => {
 // Obtener un evento por ID
 exports.getEventById = async (req, res) => {
   try {
-    const event = await Event.findById(req.params.id).populate("createdBy", "name email role");
+    // Buscamos solo por _id, no usamos populate
+    const event = await Event.findById(req.params.id);
     if (!event) return res.status(404).json({ message: "Evento no encontrado" });
     res.json(event);
   } catch (err) {
