@@ -10,7 +10,7 @@ const eventSchema = new mongoose.Schema(
     description: {
       type: String,
       default: "",
-      required:true
+      required: true,
     },
     organizer: {
       type: String,
@@ -36,11 +36,11 @@ const eventSchema = new mongoose.Schema(
       type: String, // formato "HH:mm"
       required: true,
     },
-        createdBy: { 
-    type: mongoose.Schema.Types.ObjectId, 
-    ref: "User", // nombre del modelo de usuario
-    required: true 
-  },
+    createdBy: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User", // nombre del modelo de usuario
+      
+    },
     requiresRegistration: {
       type: Boolean,
       default: false,
@@ -57,11 +57,9 @@ const eventSchema = new mongoose.Schema(
     createdAt: {
       type: Date,
       default: Date.now,
-    }
-
+    },
   },
   { timestamps: true }
 );
-
 
 module.exports = mongoose.model("Event", eventSchema);
