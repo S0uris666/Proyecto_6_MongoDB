@@ -8,7 +8,7 @@ const { createEvent, updateEvent, deleteEvent, getEventById, getAllEvents } = re
 
 //  Rutas públicas (sin auth, cualquiera puede usarlas)
 eventRouter.get("/readall", getAllEvents);         // Listar todos los eventos
-eventRouter.get("read/:id", getEventById);   // Ver detalle de un evento
+eventRouter.get("/read/:id", getEventById);   // Ver detalle de un evento
 
 //  Rutas privadas (requieren auth y rol)
 eventRouter.post("/create", auth, authRol("superuser", "admin"), createEvent);
