@@ -13,7 +13,7 @@ exports.createEvent = async (req, res) => {
       });
     }
 
-    // falta validar que el evento no existe
+    
     const newEvent = await Event.create({
       ...req.body,
       createdBy: req.user._id,
