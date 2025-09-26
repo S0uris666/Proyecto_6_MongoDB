@@ -16,7 +16,7 @@ exports.createEvent = async (req, res) => {
     
     const newEvent = await Event.create({
       ...req.body,
-      createdBy: req.user._id,
+      createdBy: req.user.id,
     });
     res.status(201).json(newEvent);
   } catch (err) {
@@ -42,7 +42,7 @@ exports.updateEvent = async (req, res) => {
     // Superuser solo puede editar lo que creó
     if (
       req.user.role === "superuser" &&
-      event.createdBy.toString() === req.user._id.toString()
+      event.createdBy.toString() === req.user.id.toString()
     ) {
       const updated = await Event.findByIdAndUpdate(req.params.id, req.body, {
         new: true,
@@ -68,7 +68,7 @@ exports.deleteEvent = async (req, res) => {
     if (
       req.user.role === "admin" ||
       (req.user.role === "superuser" &&
-        event.createdBy.toString() === req.user._id.toString())
+        event.createdBy.toString() === req.user.id.toString())
     ) {
       await Event.findByIdAndDelete(req.params.id);
       return res.json({ message: "Evento eliminado correctamente" });
